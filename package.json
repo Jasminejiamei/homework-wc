@@ -1,0 +1,28 @@
+{
+  "name": "homeworkWc",
+  "version": "1.0.0",
+  "description": "开发语言：`node.js`",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jasminejiamei/homework-wc.git"
+  },
+  "bin": {
+    "homeworkWc": "./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jasminejiamei/homework-wc/issues"
+  },
+  "homepage": "https://github.com/Jasminejiamei/homework-wc#readme"
+}
