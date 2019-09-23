@@ -1,7 +1,7 @@
 {
   "name": "homeworkWc",
   "version": "1.0.0",
-  "description": "开发语言：`node.js`",
+  "description": "实现wc.exe的功能",
   "main": "index.js",
   "directories": {
     "test": "test"
