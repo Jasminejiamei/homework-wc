@@ -60,7 +60,7 @@ const returnLettersNum = (fileName) => {
     const wordsNum = words.reduce((acc, val) => {
       return acc + val.length
     }, 0)
-    console.log(`${fileName}文件的字母数为: ${wordsNum}`)
+    console.log(`${fileName}文件的字符数为: ${wordsNum}`)
   })
 }
 

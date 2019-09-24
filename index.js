@@ -28,7 +28,7 @@ const readCommandLines = (async () => {
 						commands.push(val)
 						lastCommandIdx = i
 					} else {
-						console.log(`找不到相关指令: ${val}`)
+						console.log(`没有相关指令: ${val}`)
 						throw new Error('cannot find such command')
 					}
 				}
