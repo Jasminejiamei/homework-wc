@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const handlers = require('./constant')
-const recurseFolder = require('./recurseHandler')
+const handlers = require('./instruction')
+const recurseFolder = require('./recursestatistcal')
 
 const commandLine = process.argv  // 获取命令行输入
 const lineLength = commandLine.length
@@ -23,7 +23,7 @@ const readCommandLines = (async () => {
 			if (i > 1 && i < lineLength - 1) {
 				const validCommand = val.indexOf('-') === 0
 				if (validCommand) {
-					// 验证指令是否存在在 handlers 中，不存在则跳出整个操作
+					// 验证指令是否存在在 statistical 中，不存在则跳出整个操作
 					if (handlers[val]) {
 						commands.push(val)
 						lastCommandIdx = i
@@ -59,7 +59,6 @@ const dealWithFloder = (commands) => {
 
 /* 
  * 指令未有输入错误时可进行指令操作
- * 执行指令与 data 所匹配的命令 
  * 如果是对文件夹的操作则进行文件夹递归操作 recurseFolder
  */
 if (!breakError) {

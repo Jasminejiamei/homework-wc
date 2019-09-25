@@ -23,6 +23,8 @@ homeworkWc -c file  //返回文件 file.c 的字符数
 homeworkWc -w file  //返回文件 file.c 的词的
 homeworkWc -l file  //返回文件 file.c 的行数
 homeworkWc -s -c/-l/-w [文件夹名称]]  //返回文件夹符合规定的文件的相应统计结果
+homeworkWc -a file  //返回文件空行等信息
+homeworkWc -x file  //打开图形界面
 ```
 例如：
 ```bash 输入命令行

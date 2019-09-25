@@ -1,4 +1,6 @@
-nodejs javascript
-html
-css 
+nodejs javascript  html  css 
 设计模式 
+
+/*
+this is a progect about node.js
+*/

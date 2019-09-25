@@ -1,6 +1,6 @@
 const fs = require("fs")
 const path = require('path')
-const commonHandle = require('./constant')
+const commonHandle = require('./instruction')
 
 module.exports = (filePath, commands) => {
   try {
