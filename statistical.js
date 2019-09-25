@@ -1,10 +1,12 @@
-// handler.js 基本操作指令
+//  基本操作指令
 
 const fs = require("fs")
 const readline = require('readline')
 const path = require('path')
-var http = require("http");
-var c = require('child_process');
+const http = require("http");
+const c = require('child_process');
+// import {httpServer1} from ('./server')
+const {httpServer} = require('./server')
 
 /*
  * 逐行读取文件，待下一步操作
@@ -51,7 +53,7 @@ const returnLinesNum = (fileName) => {
   })
 }
 
-// -s 指令
+// -w 指令
 const returnWordsNum = (fileName) => {
   const rl = readLineHandle(fileName)
   let words = []
@@ -101,16 +103,18 @@ const returnNull = (fileName) => {
 }
 
 // 高级功能
-const returnHTML = function(){
-  http.createServer(function(req,res){
-    res.writeHead(200,{"Content-Type":"text/html"});
-    res.write("<p>The number of file`s letter is:</p>");
-    res.write("<p>The number of file`s word is:</p>");
-    res.write("<p>The number of file`s line is:</p>");
-    res.end("<button>Please select a file</button>");
-  }).listen(3000);
-  console.log("start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html");
-  c.exec('start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html')
+const returnHTML = ()=>{
+  // http.createServer(function(req,res){
+  //   res.writeHead(200,{"Content-Type":"text/html"});
+  //   res.write("<p>The number of file`s letter is:</p>");
+  //   res.write("<p>The number of file`s word is:</p>");
+  //   res.write("<p>The number of file`s line is:</p>");
+  //   res.end("<button>Please select a file</button>");
+  // }).listen(3000);
+  // console.log("start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html");
+  // c.exec('start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html')
+  console.log("发送请求")
+  httpServer()
 }
 
 exports = module.exports = {

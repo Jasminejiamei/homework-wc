@@ -16,7 +16,7 @@
 ## 代码运行测试
 在 `git bash` 中运行以下命令，`file` 可以相应替换成测试文件
 
-有三个基础指令，分别是 `-c`，`-w`，`-l`
+有三个基础指令，分别是 `-c`，`-w`，`-l`，拓展指令 `-s` , `-a` ,高级功能指令 `-x`
 ```bash
 homeworkWc -c file  //返回文件 file.c 的字符数
 homeworkWc -w file  //返回文件 file.c 的词的
