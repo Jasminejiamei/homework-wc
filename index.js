@@ -45,43 +45,17 @@ const readCommandLines = (async () => {
  * 验证 -s 是否带基础指令,对通配符做出处理
  */
 const dealWithFloder = (commands) => {
-	let lastCommandKey = Object.keys(commands)[Object.keys(commands).length - 2];
-    //获取文件夹的名
-    let value = commands[lastCommandKey];
-    //判断value最终值是文件夹还是通配符 * ?， 如果不是这两者，则抛错，参数不符合命令
-    let mactchResult = value.match(/[\*\?]/g);
-    // console.log(mactchResult);
-    let wildcardCharacter;
-    let fileType;
-    let fileDir;
 	if (!commands || commands.length === 1) {
 		console.log('请至少输入一个除 -s 之外的基础指令')
 		return false
-	}
-	if (mactchResult) {
-        //匹配到通配符
-        //获取文件夹目录
-        let arr = value.split(/[\*\?]/g);
-        fileType = arr[1];
-        fileDir = path.join(__dirname, arr[0]);
-        console.log(fileDir)
-        wildcardCharacter = mactchResult[0]
-
-    }
-    else {
-        fileDir = path.join(__dirname, value);
-        fileType = null;
-		wildcardCharacter = null;
+	} else {
 		commands = commands.filter((val) => {
 			return val !== '-s'
 		})
 		files.forEach((fileName) => {
 			recurseFolder(fileName, commands)
 		})
-	}
-    //递归处理该目录
-    // console.log(wildcardCharacter)
-    // fileDisplay(argv, fileDir, fileType, wildcardCharacter)	
+	}	
 }
 
 /* 

@@ -5,13 +5,21 @@ const commonHandle = require('./instruction')
 module.exports = (filePath, commands) => {
   try {
     commands.forEach((command) => {
-    //根据文件路径读取文件，返回文件列表
+      let lastCommandKey = Object.keys(commands)[Object.keys(commands).length - 2];
+      let value = commands[lastCommandKey];
+      let reg = '/[\*\?]/g';
+      let mactchResult = false;
+      //根据文件路径读取文件，返回文件列表
       fs.readdir(filePath, (err, files) => {
         if (err) {
           console.log('如果使用 -s 指令请选择一个文件夹')
           console.log('正则表达式不需要使用 -s 操作')
           throw new Error('unexpected command')
-        } else {
+        } else if(mactchResult ==true ){
+          let arr = value.split(/[\*\?]/g);
+          const filedir = path.join(__dirname,arr[0]);
+          fileDisplay(filedir);
+        }else {
           //遍历读取到的文件列表
           files.forEach((filename) => {
             //获取当前文件的绝对路径

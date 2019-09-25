@@ -1,12 +1,11 @@
-//  基本操作指令
+//  各种操作指令的实现
 
+const http = require("http");
+const c = require('child_process');
 const fs = require("fs")
 const readline = require('readline')
 const path = require('path')
-const http = require("http");
-const c = require('child_process');
-// import {httpServer1} from ('./server')
-const {httpServer} = require('./server')
+const httpServer = require('./webServer')
 
 /*
  * 逐行读取文件，待下一步操作
@@ -21,8 +20,9 @@ const readLineHandle = (fileName) => {
   })
 }
 
+
 // -c 指令
-const returnLettersNum = (fileName) => {
+const LettersNum = (fileName) => {
   const rl = readLineHandle(fileName)
   let words = []
   // 对逐行的内容操作，以空格为分界计算单词数，压入单词栈
@@ -41,10 +41,9 @@ const returnLettersNum = (fileName) => {
 }
 
 // -l 指令 
-const returnLinesNum = (fileName) => {
+const LinesNum = (fileName) => {
   const rl = readLineHandle(fileName)
   let lines = 0
-  // 逐行加一
   rl.on('line', (line) => {
     lines += 1
   })
@@ -54,10 +53,10 @@ const returnLinesNum = (fileName) => {
 }
 
 // -w 指令
-const returnWordsNum = (fileName) => {
+const WordsNum = (fileName) => {
   const rl = readLineHandle(fileName)
   let words = []
-  // 对逐行的内容操作，以空格为分界计算单词数，压入单词栈
+  // 以空格分界计算单词数，压入单词栈
   rl.on('line', (line) => {
     const currentLineArr = line.trim().split(' ')
     const currentLine = currentLineArr.length === 0 ? line : currentLineArr
@@ -71,56 +70,36 @@ const returnWordsNum = (fileName) => {
 // -a 指令
 const returnNull = (fileName) => {
   const rl = readLineHandle(fileName)
+  let lines = 0
   let nullLine = 0
   let filecode = 0
   let solution = 0
-  let regxNodeBegin = "\\s*/\\*.*";
-  let regxNodeEnd = ".*\\*/\\s*";
-  let regx = "//.*";
-  let regxSpace = '\ ';
   rl.on('line', (line) => {
-    if(line.match(regxNodeBegin)&&line.match(regxNodeEnd)){
-      ++solution;
+    lines += 1;
+    if (line.split(/^(\s*)\r\n/g)[0] === '') {
+      nullLine++;
     }
-    if(line.match(regxNodeBegin)){
-      ++solution;
-    }else if(line.match(regxNodeBegin)){
-      ++solution;
-    }else if(line.match(regxSpace)){
-      ++nullLine;
-    }else if(line.match(regx)){
-      ++solution;
-    }else{
-      ++filecode;
+    if (line.match(/\/\//g) || line.match(/\/\*/g) || line.match(/\*\//g)) {
+      solution++;
     }
-
   })
   rl.on('close', () => {
-    console.log(`${fileName}文件的代码行有: ${nullLine}`)
-    console.log(`${fileName}文件的空行有: ${filecode-1}`)
-    console.log(`${fileName}文件的注释行有: ${solution}`)
+    console.log(`${fileName}文件的代码行有: ${lines-solution-nullLine}`)
+    console.log(`${fileName}文件的空行有: ${nullLine}`)
+    console.log(`${fileName}文件的注释行有: ${solution/2}`)
     }, 0)
 }
 
 // 高级功能
 const returnHTML = ()=>{
-  // http.createServer(function(req,res){
-  //   res.writeHead(200,{"Content-Type":"text/html"});
-  //   res.write("<p>The number of file`s letter is:</p>");
-  //   res.write("<p>The number of file`s word is:</p>");
-  //   res.write("<p>The number of file`s line is:</p>");
-  //   res.end("<button>Please select a file</button>");
-  // }).listen(3000);
-  // console.log("start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html");
-  // c.exec('start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html')
-  console.log("发送请求")
-  httpServer()
+  console.log("start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html");
+  c.exec('start G:/aboutFrontEnd/前端/软工作业/homeworkWc/index.html')
 }
 
 exports = module.exports = {
-  returnLinesNum,
-  returnWordsNum,
-  returnLettersNum,
+  LinesNum,
+  WordsNum,
+  LettersNum,
   returnNull,
   returnHTML
 }
